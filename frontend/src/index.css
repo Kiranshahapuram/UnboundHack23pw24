@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  background: #0d1117;
+  color: #c9d1d9;
+  min-height: 100vh;
+}
+a {
+  color: #58a6ff;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+code {
+  background: #21262d;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5em 1em;
+  font-size: 0.9rem;
+}
+button.primary {
+  background: #238636;
+  color: white;
+}
+button.primary:hover {
+  background: #2ea043;
+}
+button.danger {
+  background: #da3633;
+  color: white;
+}
+button.danger:hover {
+  background: #f85149;
+}
+button.secondary {
+  background: #21262d;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+}
+button.secondary:hover {
+  background: #30363d;
+}
+input, textarea, select {
+  font-family: inherit;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  padding: 0.5em 0.75em;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #58a6ff;
+}
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+nav {
+  background: #161b22;
+  border-bottom: 1px solid #21262d;
+  padding: 0.75rem 1.5rem;
+}
+nav a {
+  margin-right: 1.5rem;
+  font-weight: 500;
+}
+.card {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+.badge {
+  display: inline-block;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.badge.pending { background: #6e7681; color: #fff; }
+.badge.running { background: #1f6feb; color: #fff; }
+.badge.completed { background: #238636; color: #fff; }
+.badge.failed { background: #da3633; color: #fff; }
+.badge.main { background: #1f6feb; color: #fff; }
+.badge.retry { background: #9e6a03; color: #fff; }
+.badge.llm_judge { background: #8957e5; color: #fff; }
