@@ -1,62 +1,133 @@
-# Agentic Workflow Builder
+Agentic Workflow Builder
 
-Multi-step AI workflow execution engine for the Unbound Hackathon. Chains LLM tasks with completion criteria, retries, and context passing.
+An Agentic Workflow Builder that allows users to create, run, and monitor multi-step AI workflows.
+Each step is an LLM task with configurable prompts, models, completion criteria, retries, and explicit context passing.
 
-## Tech Stack
+Built for the Unbound Hackathon with a focus on robust execution, clear observability, and real-world agent design.
 
-- **Backend**: FastAPI (Python)
-- **Database**: MySQL
-- **Frontend**: React (Vite)
-- **LLM**: Unbound API (OpenAI-compatible)
+Key Features
 
-## Setup
+Multi-step AI workflows with sequential execution
 
-### 1. Database
+Per-step configuration:
 
-Create MySQL database and run schema:
+Model selection
 
-```bash
-mysql -u root -p < database/schema.sql
-```
+Prompt templates
 
-Or create the database manually and let the app create tables via SQLAlchemy `create_all`.
+Completion criteria (rule-based + optional AI judge)
 
-### 2. Backend
+Retry limits
 
-**Requires Python 3.11 or 3.12** (Python 3.14 lacks pre-built wheels for pydantic).
+Context passing modes
 
-```bash
+Automatic context handoff between steps using {{context}}
+
+Retry with feedback injection on failure
+
+Graceful failure when retry budget is exhausted
+
+Full execution history and logs
+
+Bonus Challenges Implemented
+
+Retry budget per step
+
+Token usage and cost tracking per LLM call
+
+Live workflow and step execution tracking
+
+Clear separation of agent failures vs infrastructure failures
+
+Tech Stack
+
+Backend
+
+FastAPI
+
+SQLAlchemy
+
+MySQL / PostgreSQL
+
+Unbound API
+
+Frontend
+
+React (Vite)
+
+Setup & Run
+Backend
 cd backend
-cp .env.example .env
-# Edit .env: DATABASE_URL, UNBOUND_API_KEY
+python -m venv venv
+source venv/bin/activate   # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
-```
+uvicorn main:app --reload
 
-### 3. Frontend
 
-```bash
+Create a .env file:
+
+UNBOUND_API_KEY=your_key
+UNBOUND_BASE_URL=https://api.getunbound.ai/v1
+DATABASE_URL=your_db_url
+
+
+Backend runs at http://localhost:8000.
+
+Frontend
 cd frontend
 npm install
 npm run dev
-```
 
-Frontend proxies `/api` to `http://localhost:8000`.
 
-## Features
+Frontend runs at http://localhost:5173.
 
-- **Workflow CRUD**: Create, edit, delete workflows
-- **Step configuration**: Prompts, models, completion rules (contains, regex, json_valid, code_block_present)
-- **Context passing**: full, code_only, json_only, summary
-- **Retry logic**: Per-step retry limit with feedback injection
-- **Optional LLM judge**: Rule checks first, then LLM judge if enabled
-- **Execution**: Background run, poll for status, view logs
+API Overview
 
-## API
+Create workflow: POST /workflows
 
-- `GET/POST /workflows` - List, create
-- `GET/PATCH/DELETE /workflows/{id}` - Get, update, delete
-- `POST/GET/PATCH/DELETE /workflows/{id}/steps` - Step CRUD
-- `POST /workflows/{id}/run` - Start run (returns run_id)
-- `GET /runs/{id}` - Poll run status
-- `GET /runs/{id}/logs` - LLM call logs
+Add steps: POST /workflows/{workflow_id}/steps
+
+Run workflow: POST /workflows/{workflow_id}/run
+
+Check run status: GET /runs/{run_id}
+
+View logs: GET /runs/{run_id}/logs
+
+Each run records prompts, responses, retries, evaluation results, and cost.
+
+Demo Walkthrough
+
+Create a workflow
+
+Add multiple AI steps
+
+Run the workflow
+
+Observe:
+
+Step-by-step execution
+
+Retries with feedback
+
+Context passing
+
+Cost tracking
+
+Inspect execution logs
+
+Demo video link: (add here)
+
+Design Notes
+
+Validation is AI-based but lightweight and stable
+
+Context passing is explicit, not implicit
+
+Retries are semantic (agent-level), not infrastructure-level
+
+Infrastructure failures fail fast with clear error reporting
+
+Author
+
+Kiran Shahapuram
+GitHub: https://github.com/Kiranshahapuram
