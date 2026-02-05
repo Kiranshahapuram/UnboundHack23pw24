@@ -1,0 +1,52 @@
+# ------------------------
+# Environment variables
+# ------------------------
+.env
+.env.*
+*.env
+
+# ------------------------
+# Python
+# ------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# ------------------------
+# Node / React
+# ------------------------
+node_modules/
+dist/
+build/
+
+# ------------------------
+# Vite / React
+# ------------------------
+.vite/
+
+# ------------------------
+# Logs
+# ------------------------
+*.log
+
+# ------------------------
+# OS / Editor
+# ------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ------------------------
+# Coverage / Testing
+# ------------------------
+.coverage
+htmlcov/
